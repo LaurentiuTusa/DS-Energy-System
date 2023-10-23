@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "User_microservice", "User_microservice\User_microservice.csproj", "{DA389CF0-6654-4FC5-8CB2-9DDD5B384126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{1FC52C0A-5700-4CC3-A36E-CBD102D21387}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{827C3965-D52D-4ABE-AD9F-F10FD99508D5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA389CF0-6654-4FC5-8CB2-9DDD5B384126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA389CF0-6654-4FC5-8CB2-9DDD5B384126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA389CF0-6654-4FC5-8CB2-9DDD5B384126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA389CF0-6654-4FC5-8CB2-9DDD5B384126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FC52C0A-5700-4CC3-A36E-CBD102D21387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC52C0A-5700-4CC3-A36E-CBD102D21387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC52C0A-5700-4CC3-A36E-CBD102D21387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC52C0A-5700-4CC3-A36E-CBD102D21387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{827C3965-D52D-4ABE-AD9F-F10FD99508D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827C3965-D52D-4ABE-AD9F-F10FD99508D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827C3965-D52D-4ABE-AD9F-F10FD99508D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827C3965-D52D-4ABE-AD9F-F10FD99508D5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92E8ACFA-1F03-43B2-9861-F1EB77475F6F}
+	EndGlobalSection
+EndGlobal
