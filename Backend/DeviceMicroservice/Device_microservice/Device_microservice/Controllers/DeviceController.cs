@@ -36,6 +36,13 @@ namespace Device_microservice.Controllers
             _deviceBLL.AddDevice(device);
         }
 
+        [HttpPut]
+        [Route("UpdateDevice")]
+        public void UpdateDevice([FromBody] Device device)
+        {
+            _deviceBLL.UpdateDevice(device);
+        }
+
         [HttpDelete]
         [Route("DeleteDeviceById")]
         public void DeleteDeviceById(int id)

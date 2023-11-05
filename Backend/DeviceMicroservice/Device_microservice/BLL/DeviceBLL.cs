@@ -39,6 +39,11 @@ namespace BLL
             _deviceDAL.DeleteDeviceById(id);
         }
 
+        public void UpdateDevice(Device device)
+        {
+            _deviceDAL.UpdateDevice(device);
+        }
+
         public List<Device> GetAllDevicesByUserId(int userId)
         {
             return _deviceDAL.GetAllDevicesByUserId(userId);
