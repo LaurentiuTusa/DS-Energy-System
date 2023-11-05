@@ -1,5 +1,4 @@
-﻿using User_microservice.Repository.Models;
-using User_microservice.Repository;
+﻿using DAL.Repository.Models;
 
 namespace BLL
 {
@@ -29,9 +28,24 @@ namespace BLL
             return data;
         }
 
+        public User GetUserByEmail(UserLogin userLogin)
+        {
+            var data = _userDAL.GetUserByEmail(userLogin.Email);
+            if (data == null || !(userLogin.Password.Equals(data.Password))) //email not found or invalid password
+            {
+                throw new Exception("Invalid email or password");
+            }
+            return data;
+        }
+
         public void AddUser(User user)
         {
             _userDAL.AddUser(user);
+        }
+
+        public void UpdateUser(User user)
+        {
+            _userDAL.UpdateUser(user);
         }
 
         public void DeleteUserById(int id)

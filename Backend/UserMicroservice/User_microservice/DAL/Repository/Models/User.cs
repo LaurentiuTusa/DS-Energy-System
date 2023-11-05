@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace User_microservice.Repository.Models;
+namespace DAL.Repository.Models;
 
 [Table("User")]
 public partial class User
@@ -28,6 +28,8 @@ public partial class User
     [Unicode(false)]
     public string Password { get; set; } = null!;
 
-    [Column("isAdmin")]
-    public bool IsAdmin { get; set; }
+    [Column("role")]
+    [StringLength(20)]
+    [Unicode(false)]
+    public string Role { get; set; } = null!;
 }

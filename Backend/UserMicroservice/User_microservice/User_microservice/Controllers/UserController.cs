@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Security.Claims;
+using DAL.Repository.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using User_microservice.Repository;
-using User_microservice.Repository.Models;
+
 
 namespace User_microservice.Controllers
 {
@@ -16,6 +18,33 @@ namespace User_microservice.Controllers
         }
 
         // Methods
+
+        [HttpGet]
+        [Route("Admins")]
+        //[Authorize(Policy = "IsAdmin")]
+        //[Authorize(Roles = "admin")] //sau cu a mic
+        public IActionResult AdminEndPoint()
+        {
+            var currentUser = GetCurrentUser();
+            return Ok($"Hi {currentUser.Name}, you are an {currentUser.Role}");
+        }
+
+        private User GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                var userClaims = identity.Claims;
+                return new User
+                {
+                    Name = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value,
+                    Role = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value
+                };
+            }
+            return null;
+        }
+
+
 
         [HttpGet]
         [Route("GetAllUsers")]
@@ -36,6 +65,13 @@ namespace User_microservice.Controllers
         public void AddUser([FromBody] User user)
         {
             _userBLL.AddUser(user);
+        }
+
+        [HttpPut]
+        [Route("UpdateUser")]
+        public void UpdateUser([FromBody] User user)
+        {
+            _userBLL.UpdateUser(user);
         }
 
         [HttpDelete]

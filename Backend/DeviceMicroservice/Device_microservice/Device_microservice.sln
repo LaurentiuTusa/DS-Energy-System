@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device_microservice", "Device_microservice\Device_microservice.csproj", "{AFDFF727-B553-47FF-AD6C-C659F9937FA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{B9D1E20D-1E99-4FAF-B0DA-90138B76B4D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{23DDFD5A-1786-4636-984B-FCDF90561C26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFDFF727-B553-47FF-AD6C-C659F9937FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDFF727-B553-47FF-AD6C-C659F9937FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDFF727-B553-47FF-AD6C-C659F9937FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDFF727-B553-47FF-AD6C-C659F9937FA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D1E20D-1E99-4FAF-B0DA-90138B76B4D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D1E20D-1E99-4FAF-B0DA-90138B76B4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D1E20D-1E99-4FAF-B0DA-90138B76B4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D1E20D-1E99-4FAF-B0DA-90138B76B4D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23DDFD5A-1786-4636-984B-FCDF90561C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23DDFD5A-1786-4636-984B-FCDF90561C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23DDFD5A-1786-4636-984B-FCDF90561C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23DDFD5A-1786-4636-984B-FCDF90561C26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B617CD1-8C55-4296-A72D-B54C4E83EF35}
+	EndGlobalSection
+EndGlobal

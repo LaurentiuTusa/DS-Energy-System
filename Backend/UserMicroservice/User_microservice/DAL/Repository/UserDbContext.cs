@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using DAL.Repository.Models;
 using Microsoft.EntityFrameworkCore;
-using User_microservice.Repository.Models;
 
-namespace User_microservice.Repository;
+namespace DAL.Repository;
 
 public partial class UserDbContext : DbContext
 {

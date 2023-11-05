@@ -1,0 +1,214 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj": {}
+  },
+  "projects": {
+    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj",
+        "projectName": "BLL",
+        "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
+        "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
+        "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj",
+        "projectName": "Device_microservice",
+        "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj",
+        "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
+        "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.17.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

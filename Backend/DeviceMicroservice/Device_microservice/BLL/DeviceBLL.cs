@@ -1,0 +1,47 @@
+﻿using DAL.Repository.Models;
+
+namespace BLL
+{
+    public class DeviceBLL
+    {
+        private DAL.DeviceDAL _deviceDAL;
+
+        public DeviceBLL()
+        {
+            _deviceDAL = new DAL.DeviceDAL();
+        }
+
+        //Methods
+        public List<Device> GetAllDevices()
+        {
+            return _deviceDAL.GetAllDevices();
+        }
+
+        public Device GetDeviceById(int id)
+        {
+            var data = _deviceDAL.GetDeviceById(id);
+
+            if (data == null)
+            {
+                throw new Exception("Invalid Id");
+            }
+
+            return data;
+        }
+
+        public void AddDevice(Device device)
+        {
+            _deviceDAL.AddDevice(device);
+        }
+
+        public void DeleteDeviceById(int id)
+        {
+            _deviceDAL.DeleteDeviceById(id);
+        }
+
+        public List<Device> GetAllDevicesByUserId(int userId)
+        {
+            return _deviceDAL.GetAllDevicesByUserId(userId);
+        }
+    }
+}
