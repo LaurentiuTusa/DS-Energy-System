@@ -50,6 +50,7 @@ namespace User_microservice.Controllers
         [Route("GetAllUsers")]
         public List<User> GetAllUsers() 
         {
+            //Console.WriteLine("am trecut pepciic");
             return _userBLL.GetAllUsers();
         }
 

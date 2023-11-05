@@ -20,13 +20,13 @@ const UserCRUD = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('user');
 
   const [editId, setEditId] = useState('');
   const [editName, setEditName] = useState('');
   const [editEmail, setEditEmail] = useState('');
   const [editPassword, setEditPassword] = useState('');
-  const [editRole, setEditRole] = useState('');
+  const [editRole, setEditRole] = useState('user');
 
   const [data, setData] = useState([]);
 
@@ -44,7 +44,6 @@ const UserCRUD = () => {
     })
   }
 
-  // onclick handlers for edit and delete
   const handleEdit =(id) => {
     handleShow();
     axios.get(`https://localhost:7167/api/User/GetUserById?id=${id}`)
@@ -143,6 +142,7 @@ const UserCRUD = () => {
     }
   }
 
+//This is the code for the user ADD
   return (
     <Fragment>
       <ToastContainer />
@@ -166,7 +166,7 @@ const UserCRUD = () => {
           <Col>
             <input type="checkbox" 
             checked={role === 'admin' ? true : false}
-            onChange={(e) => handleRoleChange(e)} value={role}
+            onChange={(e) => handleRoleChange(e)} value={role === 'admin' ? 'checked' : 'unchecked'}// treu : false
             />
             <label>Admin</label>
           </Col>
@@ -175,11 +175,14 @@ const UserCRUD = () => {
           </Col>
         </Row>
       </Container>
+
       <br></br>
+      
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
@@ -211,6 +214,8 @@ const UserCRUD = () => {
           }
 
         </tbody>
+
+      
       </Table>
 
       <Modal show={show} onHide={handleClose}>
@@ -238,7 +243,7 @@ const UserCRUD = () => {
             <Col>
               <input type="checkbox" 
               checked={editRole === 'admin' ? true : false}
-              onChange={(e) => handleEditRoleChange(e)} value={editRole}
+              onChange={(e) => handleEditRoleChange(e)} value={editRole === 'admin' ? 'checked' : 'unchecked'}
               />
               <label>Admin</label>
             </Col>
