@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using DAL.Repository.Models;
 using BLL;
+using User_microservice.Services;
 
 namespace User_microservice.Controllers
 {
@@ -16,10 +17,12 @@ namespace User_microservice.Controllers
     {
         private readonly IConfiguration _config;
         private BLL.UserBLL _userBLL;
+        private JwtTokenService _jwtTokenService;
         public LoginController(IConfiguration config)
         {
             _config = config;
             _userBLL = new BLL.UserBLL();
+            _jwtTokenService = new JwtTokenService(_config);
         }
 
 /*        [AllowAnonymous]
@@ -37,7 +40,7 @@ namespace User_microservice.Controllers
         }*/
 
         // To generate token
-        private string GenerateToken(User user)
+/*        private string GenerateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -67,7 +70,7 @@ namespace User_microservice.Controllers
                 return currentUser;
             }
             return null;
-        }
+        }*/
 
 
         [HttpPost]
@@ -95,6 +98,7 @@ namespace User_microservice.Controllers
         [Route("Login")]
         public IActionResult Login([FromBody] UserLogin model)
         {
+            
             // Find the user by email
             var user = _userBLL.GetUserByEmail(model);
 
@@ -108,7 +112,8 @@ namespace User_microservice.Controllers
 
             if (isPasswordValid)
             {
-                return Ok("Login successful.");
+                var token = _jwtTokenService.CreateToken(user);
+                return Ok(token);
             }
             else
             {

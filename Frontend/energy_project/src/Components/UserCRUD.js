@@ -46,6 +46,8 @@ const UserCRUD = () => {
 
   const handleEdit =(id) => {
     handleShow();
+    //print the content of local storage
+    console.log(localStorage.getItem('jwtToken'));
     axios.get(`https://localhost:7167/api/User/${id}`)
     .then((result) => {
       setEditName(result.data.name);
@@ -58,21 +60,6 @@ const UserCRUD = () => {
       console.log(error)
     })
   }
-
-  // const handleDelete =(id) => {
-  //   if (window.confirm('Are you sure you want to delete this user?') == true) {
-  //     axios.delete(`https://localhost:7167/api/User/DeleteUserById?id=${id}`)
-  //     .then((result) => {
-  //       if (result.status === 200) {
-  //         toast.success('User deleted successfully');
-  //         getData();
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       toast.error(error);
-  //     })
-  //   }
-  // }
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
@@ -102,8 +89,9 @@ const UserCRUD = () => {
     }
   };
 
-
   const handleUpdate =() => {
+    const jwtToken = localStorage.getItem('jwtToken');
+
     const url = 'https://localhost:7167/api/User/UpdateUser';
     const data = {
       "id": editId,
@@ -113,35 +101,21 @@ const UserCRUD = () => {
       "role": editRole
     }
 
-    axios.put(url, data)
-    .then((result) => {
-      handleClose();
-      getData();
-      clear();
-      toast.success('User updated successfully');
-    }).catch((error) => {
-      toast.error(error);
+    axios.put(url, data, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      }
     })
+      .then((result) => {
+        handleClose();
+        getData();
+        clear();
+        toast.success('User updated successfully');
+      })
+        .catch((error) => {
+          toast.error(error);
+      })
   }
-
-  // const handleSave =() => {
-  //   const url = 'https://localhost:7167/api/User/AddUser';
-  //   const data = {
-  //     "name": name,
-  //     "email": email,
-  //     "password": password,
-  //     "role": role
-  //   }
-
-  //   axios.post(url, data)
-  //   .then((result) =>{
-  //     getData();
-  //     clear();
-  //     toast.success('User added successfully');
-  //   }).catch((error) => {
-  //     toast.error(error);
-  //   })
-  // }
 
   const handleSave = () => {
     const userMicroserviceUrl = 'https://localhost:7167/api/User/AddUser';

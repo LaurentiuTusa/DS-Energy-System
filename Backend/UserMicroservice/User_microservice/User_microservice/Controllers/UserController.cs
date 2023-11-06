@@ -21,12 +21,10 @@ namespace User_microservice.Controllers
 
         [HttpGet]
         [Route("Admins")]
-        //[Authorize(Policy = "IsAdmin")]
-        //[Authorize(Roles = "admin")] //sau cu a mic
+        [Authorize(Roles = "admin")]
         public IActionResult AdminEndPoint()
         {
-            var currentUser = GetCurrentUser();
-            return Ok($"Hi {currentUser.Name}, you are an {currentUser.Role}");
+            return Ok($"Hi admin, you are an allowed");
         }
 
         private User GetCurrentUser()
@@ -85,6 +83,7 @@ namespace User_microservice.Controllers
 
         [HttpPut]
         [Route("UpdateUser")]
+        [Authorize(Roles = "admin")]
         public void UpdateUser([FromBody] User user)
         {
             _userBLL.UpdateUser(user);
