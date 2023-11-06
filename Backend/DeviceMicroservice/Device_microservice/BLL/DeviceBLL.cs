@@ -48,5 +48,20 @@ namespace BLL
         {
             return _deviceDAL.GetAllDevicesByUserId(userId);
         }
+
+        public List<User> GetAllUsers()
+        {
+            return _deviceDAL.GetAllUsers();
+        }
+
+        public void AddUserId(User user)
+        {
+            _deviceDAL.AddUserId(user);
+        }
+
+        public void DeleteUserId(int id)
+        {
+            _deviceDAL.DeleteUserId(id);
+        }
     }
 }

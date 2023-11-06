@@ -33,11 +33,14 @@ namespace DAL
             return u;
         }
 
-        public void AddUser(User user)
+        public int AddUser(User user)
         {
-            var db = new UserDbContext();
-            db.Users.Add(user);
-            db.SaveChanges();
+            using (var db = new UserDbContext())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+                return user.Id;
+            }
         }
 
         public void UpdateUser(User user)

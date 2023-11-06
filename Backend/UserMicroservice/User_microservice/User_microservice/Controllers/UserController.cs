@@ -54,8 +54,9 @@ namespace User_microservice.Controllers
             return _userBLL.GetAllUsers();
         }
 
-        [HttpGet]
-        [Route("GetUserById")]
+        /*[HttpGet]
+        [Route("GetUserById")]*/
+        [HttpGet("{id}", Name = "GetUserById")]
         public User GetUserById(int id)
         {
             return _userBLL.GetUserById(id);
@@ -63,9 +64,22 @@ namespace User_microservice.Controllers
 
         [HttpPost]
         [Route("AddUser")]
-        public void AddUser([FromBody] User user)
+        public IActionResult AddUser([FromBody] User user)
         {
-            _userBLL.AddUser(user);
+            int newUserId = _userBLL.AddUser(user);
+
+            // Generate the URL for the "GetUserById" route
+            var url = Url.Link("GetUserById", new { id = newUserId });
+
+            // Return a response that includes the URL
+            if (url != null)
+            {
+                return Created(url, new { id = newUserId });
+            }
+            else
+            {
+                return BadRequest("URL generation failed"); // Handle the case where URL generation failed
+            }
         }
 
         [HttpPut]

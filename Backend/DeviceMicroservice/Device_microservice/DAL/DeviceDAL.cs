@@ -64,5 +64,32 @@ namespace DAL
             var db = new DeviceDbContext();
             return db.Devices.Where(u => u.UserId == userId).ToList();
         }
+
+        public List<User> GetAllUsers()
+        {
+            var db = new DeviceDbContext();
+            return db.Users.ToList();
+        }
+
+        public void AddUserId (User user)
+        {
+            var db = new DeviceDbContext();
+            db.Users.Add(user);
+            db.SaveChanges();
+        }
+
+        public void DeleteUserId(int id)
+        {
+            var db = new DeviceDbContext();
+            User u = new User();
+            u = db.Users.FirstOrDefault(u => u.UserId == id);
+            if (u == null)
+            {
+                throw new Exception("UserId to delete Not Found");
+            }
+            db.Users.Remove(u);
+            db.SaveChanges();
+        }
+
     }
 }

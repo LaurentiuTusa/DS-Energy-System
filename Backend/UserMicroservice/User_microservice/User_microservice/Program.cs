@@ -38,28 +38,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-/*builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      builder =>
-                      {
-                          builder.WithOrigins("http://locahost:3000/");
-                      });
-});*/
-
-/*builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("IsAdmin", policy =>
-    {
-        policy.RequireClaim(ClaimTypes.Role, "admin");
-    });
-});*/
-
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment()) app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

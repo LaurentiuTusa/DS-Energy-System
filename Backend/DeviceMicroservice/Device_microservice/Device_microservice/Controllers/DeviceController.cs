@@ -56,5 +56,26 @@ namespace Device_microservice.Controllers
         {
             return _deviceBLL.GetAllDevicesByUserId(userId);
         }
+
+        [HttpGet]
+        [Route("GetAllUsers")]
+        public List<User> GetAllUsers()
+        {
+            return _deviceBLL.GetAllUsers();
+        }
+
+        [HttpPost]
+        [Route("AddUserId")]
+        public void AddUserId([FromBody] User user)
+        {
+            _deviceBLL.AddUserId(user);
+        }
+
+        [HttpDelete]
+        [Route("DeleteUserId")]
+        public void DeleteUserId(int id)
+        {
+            _deviceBLL.DeleteUserId(id);
+        }
     }
 }

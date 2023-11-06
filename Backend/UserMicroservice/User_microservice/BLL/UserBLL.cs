@@ -38,9 +38,10 @@ namespace BLL
             return data;
         }
 
-        public void AddUser(User user)
+        public int AddUser(User user)
         {
             _userDAL.AddUser(user);
+            return user.Id;
         }
 
         public void UpdateUser(User user)
