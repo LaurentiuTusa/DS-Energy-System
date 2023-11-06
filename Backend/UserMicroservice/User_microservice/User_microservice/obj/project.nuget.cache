@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WB92zTsaDbl5+Q4bmvN8FyWD8tOpQvXO2Q3GMHViXLlamsa9LpVj+l+84u991Bs8m2tmC3eEmy0syHdU4UH+2Q==",
+  "dgSpecHash": "x7vzxEVsHCJrnYdi1zwNW+FXzDm7etcnUNUU8EkvzERga1i4l2ZwBjGUUwI+A4J+P9Yl0gCSeQ4uaB72Xk1StA==",
   "success": true,
   "projectFilePath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\User_microservice\\User_microservice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lautu\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\lautu\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\lautu\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\lautu\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\lautu\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.24\\microsoft.aspnetcore.authentication.jwtbearer.6.0.24.nupkg.sha512",
     "C:\\Users\\lautu\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

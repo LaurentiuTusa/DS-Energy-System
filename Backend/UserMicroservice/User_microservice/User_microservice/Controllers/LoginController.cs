@@ -22,7 +22,7 @@ namespace User_microservice.Controllers
             _userBLL = new BLL.UserBLL();
         }
 
-        [AllowAnonymous]
+/*        [AllowAnonymous]
         [HttpPost]
         public ActionResult Login([FromBody] UserLogin userLogin)
         {
@@ -34,7 +34,7 @@ namespace User_microservice.Controllers
             }
 
             return NotFound("user not found");
-        }
+        }*/
 
         // To generate token
         private string GenerateToken(User user)
@@ -67,6 +67,53 @@ namespace User_microservice.Controllers
                 return currentUser;
             }
             return null;
+        }
+
+
+        [HttpPost]
+        [Route("Register")]
+        public IActionResult Register([FromBody] User user)
+        {
+            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Name))
+            {
+                return BadRequest("Name, Password and Email are required.");
+            }
+
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
+            User u = new User();
+            u.Name = user.Name;
+            u.Email = user.Email;
+            u.Password = hashedPassword;
+            u.Role = "user";
+
+            _userBLL.AddUser(u);
+            return Ok("Registration successful.");
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public IActionResult Login([FromBody] UserLogin model)
+        {
+            // Find the user by email
+            var user = _userBLL.GetUserByEmail(model);
+
+            if (user == null)
+            {
+                return Unauthorized("Invalid email or password.");
+            }
+
+            // Verify the hashed password using BCrypt
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
+
+            if (isPasswordValid)
+            {
+                return Ok("Login successful.");
+            }
+            else
+            {
+                return Unauthorized("Invalid username or password.");
+            }
         }
     }
 }

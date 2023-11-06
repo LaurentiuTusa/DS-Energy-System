@@ -66,6 +66,7 @@ namespace User_microservice.Controllers
         [Route("AddUser")]
         public IActionResult AddUser([FromBody] User user)
         {
+            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             int newUserId = _userBLL.AddUser(user);
 
             // Generate the URL for the "GetUserById" route
@@ -78,7 +79,7 @@ namespace User_microservice.Controllers
             }
             else
             {
-                return BadRequest("URL generation failed"); // Handle the case where URL generation failed
+                return BadRequest("URL generation failed");
             }
         }
 

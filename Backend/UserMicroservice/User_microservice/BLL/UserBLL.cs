@@ -30,12 +30,7 @@ namespace BLL
 
         public User GetUserByEmail(UserLogin userLogin)
         {
-            var data = _userDAL.GetUserByEmail(userLogin.Email);
-            if (data == null || !(userLogin.Password.Equals(data.Password))) //email not found or invalid password
-            {
-                throw new Exception("Invalid email or password");
-            }
-            return data;
+            return _userDAL.GetUserByEmail(userLogin.Email);
         }
 
         public int AddUser(User user)

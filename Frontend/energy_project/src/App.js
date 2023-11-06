@@ -41,3 +41,6 @@ function App() {
 }
 
 export default App;
+
+//https://localhost:7167/api/Login/Register
+//https://localhost:7167/api/Login/Login

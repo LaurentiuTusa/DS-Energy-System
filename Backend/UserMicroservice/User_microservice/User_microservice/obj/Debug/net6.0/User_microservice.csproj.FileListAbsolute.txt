@@ -90,3 +90,4 @@ D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\UserMicroservice\User
 D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\UserMicroservice\User_microservice\User_microservice\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\UserMicroservice\User_microservice\User_microservice\bin\Debug\net6.0\System.Text.Json.dll
 D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\UserMicroservice\User_microservice\User_microservice\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\UserMicroservice\User_microservice\User_microservice\bin\Debug\net6.0\BCrypt.Net-Core.dll
