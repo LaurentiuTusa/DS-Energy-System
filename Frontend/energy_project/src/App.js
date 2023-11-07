@@ -4,14 +4,16 @@ import { BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router
 import UserCRUD from './Components/UserCRUD';
 import DeviceCRUD from './Components/DeviceCRUD';
 import Login from './Components/Login';
+import UserDashboard from './Components/UserDashboard';
 
 function App() {
   return (
-    
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/adminUserCRUD" element={<UserCRUD />} />
+          <Route path="/adminDeviceCRUD" element={<DeviceCRUD />} />
+          <Route path="/userDashboard" element={<UserDashboard />} />
           <Route index element={<NavigateToLogin />} /> {/* Redirect to /login if no route matches */}
       </Routes>
     </Router>

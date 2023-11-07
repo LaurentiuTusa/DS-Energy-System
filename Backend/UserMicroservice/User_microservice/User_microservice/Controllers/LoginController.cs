@@ -90,8 +90,13 @@ namespace User_microservice.Controllers
             u.Password = hashedPassword;
             u.Role = "user";
 
-            _userBLL.AddUser(u);
-            return Ok("Registration successful.");
+            int newUserId = _userBLL.AddUser(u);
+
+            // Generate the URL for the "GetUserById" route
+            var url = Url.Link("GetUserById", new { id = newUserId });
+
+            // Return a response that includes the URL
+            return Created(url, new { id = newUserId });
         }
 
         [HttpPost]
@@ -113,7 +118,15 @@ namespace User_microservice.Controllers
             if (isPasswordValid)
             {
                 var token = _jwtTokenService.CreateToken(user);
-                return Ok(token);
+
+                var response = new
+                {
+                    token = token,
+                    currentUserId = user.Id,
+                    currentUserRole = user.Role
+                };
+                
+                return Ok(response);
             }
             else
             {

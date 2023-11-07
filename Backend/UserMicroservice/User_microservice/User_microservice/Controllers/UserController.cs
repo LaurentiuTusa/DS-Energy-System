@@ -27,7 +27,7 @@ namespace User_microservice.Controllers
             return Ok($"Hi admin, you are an allowed");
         }
 
-        private User GetCurrentUser()
+/*        private User GetCurrentUser()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             if (identity != null)
@@ -40,7 +40,7 @@ namespace User_microservice.Controllers
                 };
             }
             return null;
-        }
+        }*/
 
 
 
@@ -48,7 +48,6 @@ namespace User_microservice.Controllers
         [Route("GetAllUsers")]
         public List<User> GetAllUsers() 
         {
-            //Console.WriteLine("am trecut pepciic");
             return _userBLL.GetAllUsers();
         }
 
@@ -91,6 +90,7 @@ namespace User_microservice.Controllers
 
         [HttpDelete]
         [Route("DeleteUserById")]
+        [Authorize(Roles = "admin")]
         public void DeleteUserById(int id)
         {
             _userBLL.DeleteUserById(id);

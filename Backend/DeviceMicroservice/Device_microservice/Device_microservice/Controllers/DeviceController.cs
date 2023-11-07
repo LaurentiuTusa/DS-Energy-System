@@ -1,4 +1,6 @@
+using System.Data;
 using DAL.Repository.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Device_microservice.Controllers
@@ -15,6 +17,15 @@ namespace Device_microservice.Controllers
         }
 
         //Methods
+
+        [HttpGet]
+        [Route("Admins")]
+        [Authorize(Roles = "admin")]
+        public IActionResult AdminEndPoint()
+        {
+            return Ok($"Hi admin, you are allowed");
+        }
+
         [HttpGet]
         [Route("GetAllDevices")]
         public List<Device> GetAllDevices()
@@ -38,13 +49,22 @@ namespace Device_microservice.Controllers
 
         [HttpPut]
         [Route("UpdateDevice")]
+        [Authorize(Roles = "admin")]
         public void UpdateDevice([FromBody] Device device)
         {
             _deviceBLL.UpdateDevice(device);
         }
 
+        [HttpPut]
+        [Route("DropDevice")]
+        public void DropDevice(int id)
+        {
+            _deviceBLL.DropDevice(id);
+        }
+
         [HttpDelete]
         [Route("DeleteDeviceById")]
+        [Authorize(Roles = "admin")]
         public void DeleteDeviceById(int id)
         {
             _deviceBLL.DeleteDeviceById(id);
@@ -73,6 +93,7 @@ namespace Device_microservice.Controllers
 
         [HttpDelete]
         [Route("DeleteUserId")]
+        [Authorize(Roles = "admin")]
         public void DeleteUserId(int id)
         {
             _deviceBLL.DeleteUserId(id);

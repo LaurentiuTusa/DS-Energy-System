@@ -89,3 +89,4 @@ D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\DeviceMicroservice\De
 D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\DeviceMicroservice\Device_microservice\Device_microservice\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\DeviceMicroservice\Device_microservice\Device_microservice\bin\Debug\net6.0\System.Text.Json.dll
 D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\DeviceMicroservice\Device_microservice\Device_microservice\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+D:\Lau\FACULTATE\An4 Sem1\DS\Energy System Project\Backend\DeviceMicroservice\Device_microservice\Device_microservice\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

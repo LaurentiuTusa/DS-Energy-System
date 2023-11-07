@@ -44,6 +44,11 @@ namespace BLL
             _deviceDAL.UpdateDevice(device);
         }
 
+        public void DropDevice(int id)
+        {
+            _deviceDAL.DropDevice(id);
+        }
+
         public List<Device> GetAllDevicesByUserId(int userId)
         {
             return _deviceDAL.GetAllDevicesByUserId(userId);

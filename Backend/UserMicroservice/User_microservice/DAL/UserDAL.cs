@@ -54,7 +54,7 @@ namespace DAL
             }
             u.Name = user.Name;
             u.Email = user.Email;
-            u.Password = user.Password;
+            //u.Password = user.Password;
             u.Role = user.Role;
             db.SaveChanges();
         }

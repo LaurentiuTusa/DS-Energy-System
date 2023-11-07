@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState('');
@@ -17,27 +19,35 @@ const Login = () => {
       password: loginPassword,
     };
 
-    //print the header
-    console.log(Headers)
-
     axios.post('https://localhost:7167/api/Login/Login', loginData)
       .then((response) => {
-        // Assuming the JWT token is returned in the response
-        const jwtToken = response.data;//.token;
+        const jwtToken = response.data.token;
+        const currentUserId = response.data.currentUserId;
+        const currentUserRole = response.data.currentUserRole;
 
-        // Save the token to localStorage
+        // Save the token, currentUserId and currentUserRole to localStorage
         localStorage.setItem('jwtToken', jwtToken);
+        localStorage.setItem('currentUserId', currentUserId);
+        localStorage.setItem('currentUserRole', currentUserRole);
 
-        // Handle successful login (e.g., redirect to a new page)
-        navigate('/adminUserCRUD');
+        // Redirect to the appropriate dashboard based on the user's role
+        if (currentUserRole === 'admin') {
+          navigate('/adminUserCRUD');
+        } else if (currentUserRole === 'user') {
+          navigate('/userDashboard');
+        }
       })
       .catch((error) => {
-        // Handle login error (e.g., display an error message)
         console.error('Login failed:', error);
       });
   };
 
   const handleRegister = () => {
+
+    const registerUrl = 'https://localhost:7167/api/Login/Register';
+    const deviceMicroserviceUrl = 'https://localhost:7172/Device/AddUserId';
+    const loginUrl = 'https://localhost:7167/api/Login/Login';
+
     const registerData = {
       name: registerName,
       email: registerEmail,
@@ -45,22 +55,49 @@ const Login = () => {
       role: 'user', // Set the role to 'user' by default
     };
 
-    axios.post('https://localhost:7167/api/Login/Register', registerData)
-      .then((response) => {
-        // Assuming the JWT token is returned in the response
-        const jwtToken = response.data;//.token;
+    axios.post(registerUrl, registerData)
+      .then((registerResult) => {
+        const newUserID = registerResult.data.id;
 
-        // Save the token to localStorage
-        localStorage.setItem('jwtToken', jwtToken);
+        // Create data for the second microservice
+        const userDataForDeviceMicroservice = {
+          "userId": newUserID
+        };
 
-        // Handle successful registration (e.g., redirect to a new page)
-        // print a success message for now
-        console.log('Registration succeeded!');
-      })
-      .catch((error) => {
-        // Handle registration error (e.g., display an error message)
-        console.error('Registration failed:', error);
+        // Make a POST request to the other microservice
+        axios.post(deviceMicroserviceUrl, userDataForDeviceMicroservice)
+          .then((deviceResult) => {
+            toast.success('User added successfully');
+            toast.success('UserId added to device microservice');
+          })
+          .catch((deviceError) => {
+            toast.error('Error while adding data to the device microservice: ' + deviceError);
+          });
+        })
+      .catch((userError) => {
+        toast.error('Error while adding user: ' + userError);
       });
+
+    const loginData = {
+      email: registerEmail,
+      password: registerPassword,
+    };
+
+    axios.post(loginUrl, loginData)
+    .then((response) => {
+      const jwtToken = response.data.token;
+      const currentUserId = response.data.currentUserId;
+
+      // Save the token, currentUserId and currentUserRole to localStorage
+      localStorage.setItem('jwtToken', jwtToken);
+      localStorage.setItem('currentUserId', currentUserId);
+      localStorage.setItem('currentUserRole', 'user');
+
+      navigate('/userDashboard');
+    })
+    .catch((error) => {
+      console.error('Registration failed at the login part:', error);
+    });
   };
 
   return (
@@ -72,7 +109,7 @@ const Login = () => {
       <label>Password:
         <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
       </label>
-      <button onClick={handleLogin}>Login</button>
+      <button className="btn btn-primary" onClick={handleLogin}>Login</button>
 
       <h2>Register</h2>
       <label>Name:
@@ -84,7 +121,7 @@ const Login = () => {
       <label>Password:
         <input type="password" value={registerPassword} onChange={(e) => setRegisterPassword(e.target.value)} />
       </label>
-      <button onClick={handleRegister}>Register</button>
+      <button className="btn btn-primary" onClick={handleRegister}>Register</button>
     </div>
   );
 };

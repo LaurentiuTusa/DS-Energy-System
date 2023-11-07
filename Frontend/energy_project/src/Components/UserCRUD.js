@@ -9,6 +9,8 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavigationButtons from './NavigationButtons';
+import LogoutButton from './LogoutButton';
 
 const UserCRUD = () => {
   
@@ -25,7 +27,7 @@ const UserCRUD = () => {
   const [editId, setEditId] = useState('');
   const [editName, setEditName] = useState('');
   const [editEmail, setEditEmail] = useState('');
-  const [editPassword, setEditPassword] = useState('');
+  //const [editPassword, setEditPassword] = useState('');
   const [editRole, setEditRole] = useState('user');
 
   const [data, setData] = useState([]);
@@ -35,6 +37,7 @@ const UserCRUD = () => {
   }, []);
 
   const getData = () => {
+
     axios.get('https://localhost:7167/api/User/GetAllUsers')
     .then((result) => {
       setData(result.data);
@@ -45,14 +48,14 @@ const UserCRUD = () => {
   }
 
   const handleEdit =(id) => {
+
     handleShow();
-    //print the content of local storage
-    console.log(localStorage.getItem('jwtToken'));
+
     axios.get(`https://localhost:7167/api/User/${id}`)
     .then((result) => {
       setEditName(result.data.name);
       setEditEmail(result.data.email);
-      setEditPassword(result.data.password);
+      //setEditPassword(result.data.password);
       setEditRole(result.data.role);
       setEditId(id);
     })
@@ -62,20 +65,34 @@ const UserCRUD = () => {
   }
 
   const handleDelete = (id) => {
+
     if (window.confirm('Are you sure you want to delete this user?')) {
+
+      const jwtToken = localStorage.getItem('jwtToken');
+      const urlUser = `https://localhost:7167/api/User/DeleteUserById?id=${id}`;
+
       // First, send a delete request to the User microservice
-      axios
-        .delete(`https://localhost:7167/api/User/DeleteUserById?id=${id}`)
+      axios.delete(urlUser, {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+          }
+        })
         .then((result) => {
           if (result.status === 200) {
             toast.success('User deleted successfully');
+
+            const urlDevice = `https://localhost:7172/Device/DeleteUserId?id=${id}`;
+
             // After successful deletion from the User microservice, execute a delete in the Device microservice
-            axios
-              .delete(`https://localhost:7172/Device/DeleteUserId?id=${id}`)
+            axios.delete(urlDevice, {
+                headers: {
+                  Authorization: `Bearer ${jwtToken}`,
+                }
+            })
               .then((deviceResult) => {
                 if (deviceResult.status === 200) {
-                  toast.success('Device deleted successfully');
-                  getData(); // Refresh data if needed
+                  toast.success('UserId from Device deleted successfully');
+                  getData();
                 }
               })
               .catch((deviceError) => {
@@ -90,6 +107,7 @@ const UserCRUD = () => {
   };
 
   const handleUpdate =() => {
+
     const jwtToken = localStorage.getItem('jwtToken');
 
     const url = 'https://localhost:7167/api/User/UpdateUser';
@@ -97,7 +115,7 @@ const UserCRUD = () => {
       "id": editId,
       "name": editName,
       "email": editEmail,
-      "password": editPassword,
+      "password": password,
       "role": editRole
     }
 
@@ -118,6 +136,7 @@ const UserCRUD = () => {
   }
 
   const handleSave = () => {
+
     const userMicroserviceUrl = 'https://localhost:7167/api/User/AddUser';
     const deviceMicroserviceUrl = 'https://localhost:7172/Device/AddUserId';
   
@@ -130,17 +149,17 @@ const UserCRUD = () => {
   
     axios.post(userMicroserviceUrl, userData)
       .then((userResult) => {
-        const newUserID = userResult.data.id; // Assuming the response contains the user's ID
+        const newUserID = userResult.data.id;
   
         // Create data for the second microservice
         const userDataForDeviceMicroservice = {
-          "userId": newUserID // Pass the newly created user's ID
+          "userId": newUserID
         };
   
         // Make a POST request to the other microservice
         axios.post(deviceMicroserviceUrl, userDataForDeviceMicroservice)
           .then((deviceResult) => {
-            getData(); // Refresh data if needed
+            getData();
             clear();
             toast.success('User added successfully');
             toast.success('Data added to device microservice');
@@ -158,10 +177,10 @@ const UserCRUD = () => {
     setName('');
     setEmail('');
     setPassword('');
-    setRole('');
+    setRole('user');
     setEditName('');
     setEditEmail('');
-    setEditPassword('');
+    //setEditPassword('');
     setEditRole('');
     setEditId('');
   }
@@ -182,9 +201,13 @@ const UserCRUD = () => {
     }
   }
 
-  //This is the code for the user ADD
+  //User ADD
   return (
     <Fragment>
+      <div>
+        <NavigationButtons />
+        <LogoutButton />
+      </div>
       <ToastContainer />
       <Container>
         <Row>
@@ -206,12 +229,12 @@ const UserCRUD = () => {
           <Col>
             <input type="checkbox" 
             checked={role === 'admin' ? true : false}
-            onChange={(e) => handleRoleChange(e)} value={role === 'admin' ? 'checked' : 'unchecked'}// treu : false
+            onChange={(e) => handleRoleChange(e)} value={role === 'admin' ? 'checked' : 'unchecked'}
             />
             <label>Admin</label>
           </Col>
           <Col>
-            <button className="btn btn-primary" onClick={() => handleSave()}>Submit</button>
+            <button className="btn btn-primary" onClick={() => handleSave()}>Add</button>
           </Col>
         </Row>
       </Container>
@@ -225,7 +248,7 @@ const UserCRUD = () => {
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Password</th>
+            {/* <th>Password</th> */}
             <th>Role</th>
             <th>Actions</th>
           </tr>
@@ -240,7 +263,7 @@ const UserCRUD = () => {
                   <td>{item.id}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
-                  <td>{item.password}</td>
+                  {/* <td>{item.password}</td> */}
                   <td>{item.role}</td>
                   <td>
                     <button className="btn btn-success" onClick={() => handleEdit(item.id)} >Edit</button> &nbsp;
@@ -252,10 +275,7 @@ const UserCRUD = () => {
             :
             'Loading...'
           }
-
         </tbody>
-
-      
       </Table>
 
       <Modal show={show} onHide={handleClose}>
@@ -275,11 +295,11 @@ const UserCRUD = () => {
               value={editEmail} onChange={(e) => setEditEmail(e.target.value)}
               />
             </Col>
-            <Col>
+            {/* <Col>
               <input type="text" className="form-control" placeholder="Enter password" 
               value={editPassword} onChange={(e) => setEditPassword(e.target.value)}
               />
-            </Col>
+            </Col> */}
             <Col>
               <input type="checkbox" 
               checked={editRole === 'admin' ? true : false}

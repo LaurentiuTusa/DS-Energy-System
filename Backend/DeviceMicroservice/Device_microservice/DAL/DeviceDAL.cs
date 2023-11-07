@@ -44,6 +44,20 @@ namespace DAL
             db.SaveChanges();
         }
 
+        public void DropDevice(int id)
+        {
+            var db = new DeviceDbContext();
+            Device u = new Device();
+            u = db.Devices.FirstOrDefault(u => u.Id == id);
+            if (u == null)
+            {
+                throw new Exception("Device to drop Not Found");
+            }
+
+            u.UserId = null;
+            db.SaveChanges();
+        }
+
         public void DeleteDeviceById(int id)
         {
             var db = new DeviceDbContext();

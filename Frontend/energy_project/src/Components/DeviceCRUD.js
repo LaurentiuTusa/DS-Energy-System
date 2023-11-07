@@ -9,6 +9,8 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavigationButtons from './NavigationButtons';
+import LogoutButton from './LogoutButton';
 
 const DeviceCRUD = () => {
 
@@ -35,6 +37,7 @@ const DeviceCRUD = () => {
   }, []);
 
   const getData = () => {
+
     axios.get('https://localhost:7172/Device/GetAllDevices')
     .then((result) => {
       setData(result.data);
@@ -45,7 +48,9 @@ const DeviceCRUD = () => {
   }
 
   const handleEdit =(id) => {
+
     handleShow();
+
     axios.get(`https://localhost:7172/Device/GetDeviceById?id=${id}`)
     .then((result) => {
       setEditDescription(result.data.description);
@@ -60,8 +65,17 @@ const DeviceCRUD = () => {
   }
 
   const handleDelete =(id) => {
+
     if (window.confirm('Are you sure you want to delete this device?') == true) {
-      axios.delete(`https://localhost:7172/Device/DeleteDeviceById?id=${id}`)
+
+      const jwtToken = localStorage.getItem('jwtToken');
+      const url = `https://localhost:7172/Device/DeleteDeviceById?id=${id}`;
+
+      axios.delete(url, {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        }
+      })
       .then((result) => {
         if (result.status === 200) {
           toast.success('Device deleted successfully');
@@ -75,6 +89,9 @@ const DeviceCRUD = () => {
   }
 
   const handleUpdate =() => {
+
+    const jwtToken = localStorage.getItem('jwtToken');
+
     const url = 'https://localhost:7172/Device/UpdateDevice';
     const data = {
       "id": editId,
@@ -84,18 +101,24 @@ const DeviceCRUD = () => {
       "userId": editUserId
     }
 
-    axios.put(url, data)
-    .then((result) => {
-      handleClose();
-      getData();
-      clear();
-      toast.success('Device updated successfully');
-    }).catch((error) => {
-      toast.error(error);
+    axios.put(url, data, {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      }
     })
+      .then((result) => {
+        handleClose();
+        getData();
+        clear();
+        toast.success('Device updated successfully');
+      })
+        .catch((error) => {
+          toast.error(error);
+      })
   }
 
   const handleSave =() => {
+
     const url = 'https://localhost:7172/Device/AddDevice';
     const data = {
       "description": description,
@@ -143,9 +166,13 @@ const DeviceCRUD = () => {
     }
   }
 
-  //This is the code for the user ADD
+  //Device ADD
   return (
     <Fragment>
+      <div>
+        <NavigationButtons />
+        <LogoutButton />
+      </div>
       <ToastContainer />
       <Container>
         <Row>
@@ -171,7 +198,7 @@ const DeviceCRUD = () => {
             />
           </Col>
           <Col>
-            <button className="btn btn-primary" onClick={() => handleSave()}>Submit</button>
+            <button className="btn btn-primary" onClick={() => handleSave()}>Add</button>
           </Col>
         </Row>
       </Container>
@@ -212,15 +239,12 @@ const DeviceCRUD = () => {
             :
             'Loading...'
           }
-
         </tbody>
-
-      
       </Table>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modify User</Modal.Title>
+          <Modal.Title>Modify Device</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           
@@ -261,9 +285,6 @@ const DeviceCRUD = () => {
 
     </Fragment>
   )
-
-
-
 }
 
 export default DeviceCRUD;
