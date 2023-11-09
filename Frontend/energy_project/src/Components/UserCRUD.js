@@ -71,7 +71,6 @@ const UserCRUD = () => {
       const jwtToken = localStorage.getItem('jwtToken');
       const urlUser = `https://localhost:7167/api/User/DeleteUserById?id=${id}`;
 
-      // First, send a delete request to the User microservice
       axios.delete(urlUser, {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
@@ -80,24 +79,7 @@ const UserCRUD = () => {
         .then((result) => {
           if (result.status === 200) {
             toast.success('User deleted successfully');
-
-            const urlDevice = `https://localhost:7172/Device/DeleteUserId?id=${id}`;
-
-            // After successful deletion from the User microservice, execute a delete in the Device microservice
-            axios.delete(urlDevice, {
-                headers: {
-                  Authorization: `Bearer ${jwtToken}`,
-                }
-            })
-              .then((deviceResult) => {
-                if (deviceResult.status === 200) {
-                  toast.success('UserId from Device deleted successfully');
-                  getData();
-                }
-              })
-              .catch((deviceError) => {
-                toast.error('Error while deleting userId from device: ' + deviceError);
-              });
+            getData();
           }
         })
         .catch((error) => {
@@ -138,8 +120,6 @@ const UserCRUD = () => {
   const handleSave = () => {
 
     const userMicroserviceUrl = 'https://localhost:7167/api/User/AddUser';
-    const deviceMicroserviceUrl = 'https://localhost:7172/Device/AddUserId';
-  
     const userData = {
       "name": name,
       "email": email,
@@ -149,24 +129,9 @@ const UserCRUD = () => {
   
     axios.post(userMicroserviceUrl, userData)
       .then((userResult) => {
-        const newUserID = userResult.data.id;
-  
-        // Create data for the second microservice
-        const userDataForDeviceMicroservice = {
-          "userId": newUserID
-        };
-  
-        // Make a POST request to the other microservice
-        axios.post(deviceMicroserviceUrl, userDataForDeviceMicroservice)
-          .then((deviceResult) => {
-            getData();
-            clear();
-            toast.success('User added successfully');
-            toast.success('Data added to device microservice');
-          })
-          .catch((deviceError) => {
-            toast.error('Error while adding data to the device microservice: ' + deviceError);
-          });
+        getData();
+        clear();
+        toast.success('User added successfully');
       })
       .catch((userError) => {
         toast.error('Error while adding user: ' + userError);

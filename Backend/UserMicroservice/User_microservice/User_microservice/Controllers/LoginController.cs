@@ -25,55 +25,7 @@ namespace User_microservice.Controllers
             _jwtTokenService = new JwtTokenService(_config);
         }
 
-/*        [AllowAnonymous]
-        [HttpPost]
-        public ActionResult Login([FromBody] UserLogin userLogin)
-        {
-            var user = Authenticate(userLogin);
-            if (user != null)
-            {
-                var token = GenerateToken(user);
-                return Ok(token);
-            }
-
-            return NotFound("user not found");
-        }*/
-
-        // To generate token
-/*        private string GenerateToken(User user)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier,user.Name),
-                new Claim(ClaimTypes.Role,user.Role)
-            };
-
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-                _config["Jwt:Audience"],
-                claims,
-                //expires: DateTime.Now.AddMinutes(15),
-                signingCredentials: credentials);
-
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-        //To authenticate user
-        private User Authenticate(UserLogin userLogin)
-        {
-            var currentUser = _userBLL.GetUserByEmail(userLogin);
-
-            if (currentUser != null)
-            {
-                return currentUser;
-            }
-            return null;
-        }*/
-
-
-        [HttpPost]
+        /*[HttpPost]
         [Route("Register")]
         public IActionResult Register([FromBody] User user)
         {
@@ -92,12 +44,36 @@ namespace User_microservice.Controllers
 
             int newUserId = _userBLL.AddUser(u);
 
-            // Generate the URL for the "GetUserById" route
-            var url = Url.Link("GetUserById", new { id = newUserId });
+            // Synchronize the databases by making a request to AddUserId in Device_microservice
+            using (HttpClient client = new HttpClient())
+            {
+                // Make the HTTP POST request to AddUserId endpoint in Device_microservice
+                HttpResponseMessage response = client.PostAsync($"https://localhost:7172/Device/AddUserId?user_id={newUserId}", null).Result;
 
-            // Return a response that includes the URL
-            return Created(url, new { id = newUserId });
-        }
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    // Generate the URL for the "GetUserById" route
+                    var url = Url.Link("GetUserById", new { id = newUserId });
+
+                    // Return a response that includes the URL
+                    if (url != null)
+                    {
+                        // Return a response that includes the URL
+                        return Created(url, new { id = newUserId });
+                    }
+                    else
+                    {
+                        return BadRequest("URL generation failed");
+                    }
+                }
+                else
+                {
+                    // Handle synchronization failure
+                    return StatusCode((int)response.StatusCode, "Database synchronization failed");
+                }
+            }
+        }*/
 
         [HttpPost]
         [Route("Login")]
@@ -131,6 +107,49 @@ namespace User_microservice.Controllers
             else
             {
                 return Unauthorized("Invalid username or password.");
+            }
+        }
+
+        [HttpPost]
+        [Route("Register")]
+        public IActionResult Register([FromBody] User user)
+        {
+            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Name))
+            {
+                return BadRequest("Name, Password and Email are required.");
+            }
+
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
+            User u = new User();
+            u.Name = user.Name;
+            u.Email = user.Email;
+            u.Password = hashedPassword;
+            u.Role = "user";
+
+            int newUserId = _userBLL.AddUser(u);
+
+            // Synchronize the databases by making a request to AddUserId in Device_microservice
+            using (HttpClient client = new HttpClient())
+            {
+                // Make the HTTP POST request to AddUserId endpoint in Device_microservice
+                HttpResponseMessage response = client.PostAsync($"https://localhost:7172/Device/AddUserId?user_id={newUserId}", null).Result;
+
+                // Check if the request was successful
+                if (response.IsSuccessStatusCode)
+                {
+                    //call the login method if register successful
+                    UserLogin userLogin = new UserLogin();
+                    userLogin.Email = user.Email;
+                    userLogin.Password = user.Password;
+
+                    return Login(userLogin);
+                }
+                else
+                {
+                    // Handle synchronization failure
+                    return StatusCode((int)response.StatusCode, "Database synchronization failed");
+                }
             }
         }
     }

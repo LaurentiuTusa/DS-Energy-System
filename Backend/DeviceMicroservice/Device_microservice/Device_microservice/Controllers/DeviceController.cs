@@ -86,17 +86,31 @@ namespace Device_microservice.Controllers
 
         [HttpPost]
         [Route("AddUserId")]
-        public void AddUserId([FromBody] User user)
+        public void AddUserId([FromQuery] int user_id)
         {
+            User user = new User();
+            user.UserId = user_id;
             _deviceBLL.AddUserId(user);
         }
 
         [HttpDelete]
         [Route("DeleteUserId")]
         [Authorize(Roles = "admin")]
-        public void DeleteUserId(int id)
+        public IActionResult DeleteUserId(int id)
         {
-            _deviceBLL.DeleteUserId(id);
+            try
+            {
+                _deviceBLL.DeleteUserId(id);
+                return Ok("User deleted successfully");
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                Console.WriteLine($"Error deleting user with ID {id}: {ex.Message}");
+
+                // Return an appropriate error response to the client
+                return StatusCode(500, "Internal Server Error");
+            }
         }
     }
 }

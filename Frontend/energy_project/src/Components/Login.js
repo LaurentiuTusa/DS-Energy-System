@@ -45,8 +45,6 @@ const Login = () => {
   const handleRegister = () => {
 
     const registerUrl = 'https://localhost:7167/api/Login/Register';
-    const deviceMicroserviceUrl = 'https://localhost:7172/Device/AddUserId';
-    const loginUrl = 'https://localhost:7167/api/Login/Login';
 
     const registerData = {
       name: registerName,
@@ -57,47 +55,21 @@ const Login = () => {
 
     axios.post(registerUrl, registerData)
       .then((registerResult) => {
-        const newUserID = registerResult.data.id;
 
-        // Create data for the second microservice
-        const userDataForDeviceMicroservice = {
-          "userId": newUserID
-        };
+        const jwtToken = registerResult.data.token;
+        const currentUserId = registerResult.data.currentUserId;
+        const currentUserRole = registerResult.data.currentUserRole;
 
-        // Make a POST request to the other microservice
-        axios.post(deviceMicroserviceUrl, userDataForDeviceMicroservice)
-          .then((deviceResult) => {
-            toast.success('User added successfully');
-            toast.success('UserId added to device microservice');
-          })
-          .catch((deviceError) => {
-            toast.error('Error while adding data to the device microservice: ' + deviceError);
-          });
-        })
-      .catch((userError) => {
-        toast.error('Error while adding user: ' + userError);
+        // Save the token, currentUserId and currentUserRole to localStorage
+        localStorage.setItem('jwtToken', jwtToken);
+        localStorage.setItem('currentUserId', currentUserId);
+        localStorage.setItem('currentUserRole', currentUserRole);
+
+        navigate('/userDashboard');
+      })
+      .catch((error) => {
+        console.error('Registration failed at the login part:', error);
       });
-
-    const loginData = {
-      email: registerEmail,
-      password: registerPassword,
-    };
-
-    axios.post(loginUrl, loginData)
-    .then((response) => {
-      const jwtToken = response.data.token;
-      const currentUserId = response.data.currentUserId;
-
-      // Save the token, currentUserId and currentUserRole to localStorage
-      localStorage.setItem('jwtToken', jwtToken);
-      localStorage.setItem('currentUserId', currentUserId);
-      localStorage.setItem('currentUserRole', 'user');
-
-      navigate('/userDashboard');
-    })
-    .catch((error) => {
-      console.error('Registration failed at the login part:', error);
-    });
   };
 
   return (
