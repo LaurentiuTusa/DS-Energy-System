@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavigationButtons from './NavigationButtons';
 import LogoutButton from './LogoutButton';
+import { useNavigate } from 'react-router-dom';
 
 const UserCRUD = () => {
   
@@ -27,12 +28,23 @@ const UserCRUD = () => {
   const [editId, setEditId] = useState('');
   const [editName, setEditName] = useState('');
   const [editEmail, setEditEmail] = useState('');
-  //const [editPassword, setEditPassword] = useState('');
   const [editRole, setEditRole] = useState('user');
 
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const currentUserId = localStorage.getItem('currentUserId');
+    const currentUserRole = localStorage.getItem('currentUserRole');
+    //extract the userId from the URL
+    const userIdFromUrl = window.location.pathname.split('/')[2];
+    console.log('userIdFromUrl:', userIdFromUrl);
+
+    //if the userId from the URL is not the same as the currentUserId or the role is not admin, redirect to the login page
+    if ((userIdFromUrl !== currentUserId) || (currentUserRole !== 'admin')) {
+      navigate('/unauthorized');
+    }
+
     getData();
   }, []);
 
@@ -55,7 +67,6 @@ const UserCRUD = () => {
     .then((result) => {
       setEditName(result.data.name);
       setEditEmail(result.data.email);
-      //setEditPassword(result.data.password);
       setEditRole(result.data.role);
       setEditId(id);
     })
@@ -145,7 +156,6 @@ const UserCRUD = () => {
     setRole('user');
     setEditName('');
     setEditEmail('');
-    //setEditPassword('');
     setEditRole('');
     setEditId('');
   }
@@ -213,7 +223,6 @@ const UserCRUD = () => {
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
-            {/* <th>Password</th> */}
             <th>Role</th>
             <th>Actions</th>
           </tr>
@@ -228,7 +237,6 @@ const UserCRUD = () => {
                   <td>{item.id}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
-                  {/* <td>{item.password}</td> */}
                   <td>{item.role}</td>
                   <td>
                     <button className="btn btn-success" onClick={() => handleEdit(item.id)} >Edit</button> &nbsp;
@@ -260,11 +268,6 @@ const UserCRUD = () => {
               value={editEmail} onChange={(e) => setEditEmail(e.target.value)}
               />
             </Col>
-            {/* <Col>
-              <input type="text" className="form-control" placeholder="Enter password" 
-              value={editPassword} onChange={(e) => setEditPassword(e.target.value)}
-              />
-            </Col> */}
             <Col>
               <input type="checkbox" 
               checked={editRole === 'admin' ? true : false}

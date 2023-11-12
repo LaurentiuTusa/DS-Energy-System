@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavigationButtons from './NavigationButtons';
 import LogoutButton from './LogoutButton';
+import { useNavigate } from 'react-router-dom';
 
 const DeviceCRUD = () => {
 
@@ -30,9 +31,22 @@ const DeviceCRUD = () => {
   const [editMaxHourlyConsumption, setEditMaxHourlyConsumption] = useState('');
   const [editUserId, setEditUserId] = useState('');
 
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const currentUserId = localStorage.getItem('currentUserId');
+    const currentUserRole = localStorage.getItem('currentUserRole');
+
+    //extract the userId from the URL
+    const userIdFromUrl = window.location.pathname.split('/')[2];
+    console.log('userIdFromUrl:', userIdFromUrl);
+
+    //if the userId from the URL is not the same as the currentUserId or the role is not admin, redirect to the unauthorized page
+    if ((userIdFromUrl !== currentUserId) || (currentUserRole !== 'admin')) {
+      navigate('/unauthorized');
+    }
+    
     getData();
   }, []);
 
@@ -193,7 +207,6 @@ const DeviceCRUD = () => {
           </Col>
           <Col>
             <input type="text" className="form-control" placeholder="Enter userId"
-            //value={userId} onChange={(e) => setUserId(e.target.value)}// consider using handleUserIdChange() instead
             value={userId} onChange={(e) => handleUserIdChange(e)}
             />
           </Col>
@@ -266,7 +279,6 @@ const DeviceCRUD = () => {
             </Col>
             <Col>
             <input type="text" className="form-control" placeholder="Enter userId"
-            //value={editUserId} onChange={(e) => setEditUserId(e.target.value)}
             value={editUserId} onChange={(e) => handleEditUserIdChange(e)}
               />
             </Col>

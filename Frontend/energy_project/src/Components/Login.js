@@ -30,11 +30,16 @@ const Login = () => {
         localStorage.setItem('currentUserId', currentUserId);
         localStorage.setItem('currentUserRole', currentUserRole);
 
+        console.log('From Login:');
+        console.log('jwtToken:', jwtToken);
+        console.log('currentUserRole:', currentUserRole);
+        console.log('currentUserId:', currentUserId);
+
         // Redirect to the appropriate dashboard based on the user's role
         if (currentUserRole === 'admin') {
-          navigate('/adminUserCRUD');
+          navigate(`/adminUserCRUD/${currentUserId}`);
         } else if (currentUserRole === 'user') {
-          navigate('/userDashboard');
+          navigate(`/userDashboard/${currentUserId}`);
         }
       })
       .catch((error) => {
@@ -65,7 +70,7 @@ const Login = () => {
         localStorage.setItem('currentUserId', currentUserId);
         localStorage.setItem('currentUserRole', currentUserRole);
 
-        navigate('/userDashboard');
+        navigate(`/userDashboard/${currentUserId}`);
       })
       .catch((error) => {
         console.error('Registration failed at the login part:', error);

@@ -4,11 +4,13 @@ function NavigationButtons() {
   const navigate = useNavigate();
 
   const goToUserCRUD = () => {
-    navigate('/adminUserCRUD');
+    const currentUserId = localStorage.getItem('currentUserId');
+    navigate(`/adminUserCRUD/${currentUserId}`);
   };
 
   const goToDeviceCRUD = () => {
-    navigate('/adminDeviceCRUD');
+    const currentUserId = localStorage.getItem('currentUserId');
+    navigate(`/adminDeviceCRUD/${currentUserId}`);
   };
 
   return (

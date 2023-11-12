@@ -10,28 +10,30 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LogoutButton from './LogoutButton';
+import { useNavigate } from 'react-router-dom';
 
 const UserDashboard = () => {
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const [description, setDescription] = useState('');
   const [address, setAddress] = useState('');
   const [maxHourlyConsumption, setMaxHourlyConsumption] = useState('');
-  const [userId, setUserId] = useState('');
 
-  const [editId, setEditId] = useState('');
-  const [editDescription, setEditDescription] = useState('');
-  const [editAddress, setEditAddress] = useState('');
-  const [editMaxHourlyConsumption, setEditMaxHourlyConsumption] = useState('');
-  const [editUserId, setEditUserId] = useState('');
-
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const currentUserId = localStorage.getItem('currentUserId');
+    const currentUserRole = localStorage.getItem('currentUserRole');
+
+    //extract the userId from the URL
+    const userIdFromUrl = window.location.pathname.split('/')[2];
+    console.log('userIdFromUrl:', userIdFromUrl);
+
+    //if the userId from the URL is not the same as the currentUserId or the role is not user, redirect to the unauthorized page
+    if ((userIdFromUrl !== currentUserId) || (currentUserRole !== 'user')) {
+      navigate('/unauthorized');
+    }
+    
     getData();
   }, []);
 
@@ -90,12 +92,6 @@ const UserDashboard = () => {
     setDescription('');
     setAddress('');
     setMaxHourlyConsumption('');
-    setUserId('');
-    setEditDescription('');
-    setEditAddress('');
-    setEditMaxHourlyConsumption('');
-    setEditUserId('');
-    setEditId('');
   }
 
   return (
