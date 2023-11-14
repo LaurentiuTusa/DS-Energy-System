@@ -19,7 +19,7 @@ const Login = () => {
       password: loginPassword,
     };
 
-    axios.post('https://localhost:7167/api/Login/Login', loginData)
+    axios.post('http://localhost:8082/api/Login/Login', loginData)
       .then((response) => {
         const jwtToken = response.data.token;
         const currentUserId = response.data.currentUserId;
@@ -49,7 +49,7 @@ const Login = () => {
 
   const handleRegister = () => {
 
-    const registerUrl = 'https://localhost:7167/api/Login/Register';
+    const registerUrl = 'http://localhost:8082/api/Login/Register';
 
     const registerData = {
       name: registerName,

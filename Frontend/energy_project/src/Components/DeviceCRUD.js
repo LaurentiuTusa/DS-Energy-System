@@ -52,7 +52,7 @@ const DeviceCRUD = () => {
 
   const getData = () => {
 
-    axios.get('https://localhost:7172/Device/GetAllDevices')
+    axios.get('http://localhost:8083/Device/GetAllDevices')
     .then((result) => {
       setData(result.data);
     })
@@ -65,7 +65,7 @@ const DeviceCRUD = () => {
 
     handleShow();
 
-    axios.get(`https://localhost:7172/Device/GetDeviceById?id=${id}`)
+    axios.get(`http://localhost:8083/Device/GetDeviceById?id=${id}`)
     .then((result) => {
       setEditDescription(result.data.description);
       setEditAddress(result.data.address);
@@ -83,7 +83,7 @@ const DeviceCRUD = () => {
     if (window.confirm('Are you sure you want to delete this device?') == true) {
 
       const jwtToken = localStorage.getItem('jwtToken');
-      const url = `https://localhost:7172/Device/DeleteDeviceById?id=${id}`;
+      const url = `http://localhost:8083/Device/DeleteDeviceById?id=${id}`;
 
       axios.delete(url, {
         headers: {
@@ -106,7 +106,7 @@ const DeviceCRUD = () => {
 
     const jwtToken = localStorage.getItem('jwtToken');
 
-    const url = 'https://localhost:7172/Device/UpdateDevice';
+    const url = 'http://localhost:8083/Device/UpdateDevice';
     const data = {
       "id": editId,
       "description": editDescription,
@@ -133,7 +133,7 @@ const DeviceCRUD = () => {
 
   const handleSave =() => {
 
-    const url = 'https://localhost:7172/Device/AddDevice';
+    const url = 'http://localhost:8083/Device/AddDevice';
     const data = {
       "description": description,
       "address": address,

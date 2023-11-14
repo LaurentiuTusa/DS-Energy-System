@@ -1,4 +1,6 @@
+using DAL.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -11,14 +13,18 @@ builder.Services.AddCors(options =>
     options.AddPolicy("Frontend",
         policy =>
         {
-            policy.AllowAnyOrigin()
+            policy
+                .WithOrigins("http://localhost:3000")
                 .AllowAnyHeader()
-                .AllowAnyMethod();
+                .AllowAnyMethod()
+                .AllowCredentials();
         });
 });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -41,16 +47,21 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+// For Kestrel, allowing both HTTP and HTTPS
+/*builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8082); // HTTP
+    options.ListenAnyIP(8083); // HTTP
+});*/
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment()) app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+if (app.Environment.IsDevelopment()) app.UseCors(x => x.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseCors("Frontend");
 app.UseHttpsRedirection();

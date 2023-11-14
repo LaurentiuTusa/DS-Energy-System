@@ -1,0 +1,49 @@
+version: "2.23.0"
+services:
+  user_microservice_db:
+    container_name: user_microservice_db_container
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8001:1433
+    environment:
+      - ACCEPT_EULA=Y
+
+  device_microservice_db:
+    container_name: device_microservice_db_container
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8002:1433
+    environment:
+      - ACCEPT_EULA=Y
+
+  frontend:
+    build: ./Frontend
+    container_name: Frontend_c
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+  backend_user:
+    container_name: User_microservice_c
+    image: ${DOCKER_REGISTRY-}usermicroservice
+    build: ./Backend/UserMicroservice/User_microservice/User_microservice
+    ports:
+      - "8004:80"
+    environment:
+      - DB_HOST=DESKTOP-HMGHORR\\SQLEXPRESS
+      - DB_NAME=DS_User
+
+  backend_device:
+    container_name: Device_microservice_c
+    image: ${DOCKER_REGISTRY-}devicemicroservice
+    build: ./Backend/DeviceMicroservice/Device_microservice/Device_microservice
+    ports:
+      - "8005:81"
+    environment:
+      - DB_HOST=DESKTOP-HMGHORR\\SQLEXPRESS
+      - DB_NAME=DS_User
+
+
+
+    

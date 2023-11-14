@@ -29,22 +29,6 @@ namespace User_microservice.Controllers
             return Ok($"Hi admin, you are an allowed");
         }
 
-/*        private User GetCurrentUser()
-        {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-            if (identity != null)
-            {
-                var userClaims = identity.Claims;
-                return new User
-                {
-                    Name = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value,
-                    Role = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value
-                };
-            }
-            return null;
-        }*/
-
-
 
         [HttpGet]
         [Route("GetAllUsers")]
@@ -72,7 +56,7 @@ namespace User_microservice.Controllers
             using (HttpClient client = new HttpClient())
             {
                 // Make the HTTP POST request to AddUserId endpoint in Device_microservice
-                HttpResponseMessage response = client.PostAsync($"https://localhost:7172/Device/AddUserId?user_id={newUserId}", null).Result;
+                HttpResponseMessage response = client.PostAsync($"http://localhost:8083/Device/AddUserId?user_id={newUserId}", null).Result;
             
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)
@@ -122,7 +106,7 @@ namespace User_microservice.Controllers
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 // Make the HTTP POST request to AddUserId endpoint in Device_microservice
-                HttpResponseMessage response = client.DeleteAsync($"https://localhost:7172/Device/DeleteUserId?id={id}").Result;
+                HttpResponseMessage response = client.DeleteAsync($"http://localhost:8083/Device/DeleteUserId?id={id}").Result;
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)

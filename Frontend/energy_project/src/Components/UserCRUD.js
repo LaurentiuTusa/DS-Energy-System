@@ -50,7 +50,7 @@ const UserCRUD = () => {
 
   const getData = () => {
 
-    axios.get('https://localhost:7167/api/User/GetAllUsers')
+    axios.get('http://localhost:8082/api/User/GetAllUsers')
     .then((result) => {
       setData(result.data);
     })
@@ -63,7 +63,7 @@ const UserCRUD = () => {
 
     handleShow();
 
-    axios.get(`https://localhost:7167/api/User/${id}`)
+    axios.get(`http://localhost:8082/api/User/${id}`)
     .then((result) => {
       setEditName(result.data.name);
       setEditEmail(result.data.email);
@@ -80,7 +80,7 @@ const UserCRUD = () => {
     if (window.confirm('Are you sure you want to delete this user?')) {
 
       const jwtToken = localStorage.getItem('jwtToken');
-      const urlUser = `https://localhost:7167/api/User/DeleteUserById?id=${id}`;
+      const urlUser = `http://localhost:8082/api/User/DeleteUserById?id=${id}`;
 
       axios.delete(urlUser, {
           headers: {
@@ -103,7 +103,7 @@ const UserCRUD = () => {
 
     const jwtToken = localStorage.getItem('jwtToken');
 
-    const url = 'https://localhost:7167/api/User/UpdateUser';
+    const url = 'http://localhost:8082/api/User/UpdateUser';
     const data = {
       "id": editId,
       "name": editName,
@@ -130,7 +130,7 @@ const UserCRUD = () => {
 
   const handleSave = () => {
 
-    const userMicroserviceUrl = 'https://localhost:7167/api/User/AddUser';
+    const userMicroserviceUrl = 'http://localhost:8082/api/User/AddUser';
     const userData = {
       "name": name,
       "email": email,

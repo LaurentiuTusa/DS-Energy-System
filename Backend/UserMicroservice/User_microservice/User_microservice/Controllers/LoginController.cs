@@ -25,55 +25,6 @@ namespace User_microservice.Controllers
             _jwtTokenService = new JwtTokenService(_config);
         }
 
-        /*[HttpPost]
-        [Route("Register")]
-        public IActionResult Register([FromBody] User user)
-        {
-            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Name))
-            {
-                return BadRequest("Name, Password and Email are required.");
-            }
-
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(user.Password);
-
-            User u = new User();
-            u.Name = user.Name;
-            u.Email = user.Email;
-            u.Password = hashedPassword;
-            u.Role = "user";
-
-            int newUserId = _userBLL.AddUser(u);
-
-            // Synchronize the databases by making a request to AddUserId in Device_microservice
-            using (HttpClient client = new HttpClient())
-            {
-                // Make the HTTP POST request to AddUserId endpoint in Device_microservice
-                HttpResponseMessage response = client.PostAsync($"https://localhost:7172/Device/AddUserId?user_id={newUserId}", null).Result;
-
-                // Check if the request was successful
-                if (response.IsSuccessStatusCode)
-                {
-                    // Generate the URL for the "GetUserById" route
-                    var url = Url.Link("GetUserById", new { id = newUserId });
-
-                    // Return a response that includes the URL
-                    if (url != null)
-                    {
-                        // Return a response that includes the URL
-                        return Created(url, new { id = newUserId });
-                    }
-                    else
-                    {
-                        return BadRequest("URL generation failed");
-                    }
-                }
-                else
-                {
-                    // Handle synchronization failure
-                    return StatusCode((int)response.StatusCode, "Database synchronization failed");
-                }
-            }
-        }*/
 
         [HttpPost]
         [Route("Login")]
@@ -133,7 +84,7 @@ namespace User_microservice.Controllers
             using (HttpClient client = new HttpClient())
             {
                 // Make the HTTP POST request to AddUserId endpoint in Device_microservice
-                HttpResponseMessage response = client.PostAsync($"https://localhost:7172/Device/AddUserId?user_id={newUserId}", null).Result;
+                HttpResponseMessage response = client.PostAsync($"http://localhost:8083/Device/AddUserId?user_id={newUserId}", null).Result;
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)

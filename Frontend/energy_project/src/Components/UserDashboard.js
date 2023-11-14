@@ -40,7 +40,7 @@ const UserDashboard = () => {
   const getData = () => {
     const currentUserId = localStorage.getItem('currentUserId');
 
-    axios.get(`https://localhost:7172/Device/GetAllDevicesByUserId?userId=${currentUserId}`)
+    axios.get(`http://localhost:8083/Device/GetAllDevicesByUserId?userId=${currentUserId}`)
     .then((result) => {
       setData(result.data);
     })
@@ -51,7 +51,7 @@ const UserDashboard = () => {
 
   const handleSave =() => {
 
-    const url = 'https://localhost:7172/Device/AddDevice';
+    const url = 'http://localhost:8083/Device/AddDevice';
 
     const currentUserId = localStorage.getItem('currentUserId');
     const data = {
@@ -75,7 +75,7 @@ const UserDashboard = () => {
 
     if (window.confirm('Are you sure you want to drop this device?') == true) {
 
-      axios.put(`https://localhost:7172/Device/DropDevice?id=${id}`)
+      axios.put(`http://localhost:8083/Device/DropDevice?id=${id}`)
       .then((result) => {
         if (result.status === 200) {
           toast.success('Device dropped successfully');
