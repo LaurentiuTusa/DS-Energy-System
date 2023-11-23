@@ -5,27 +5,22 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8083
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["..", "applicaton/"]
-# RUN dotnet restore "User_microservice/User_microservice.csproj"
-# WORKDIR "/src/User_microservice"
-# RUN dotnet build "User_microservice/" -c Release -o /app/build
+COPY ["Device_microservice/Device_microservice.csproj", "Device_microservice/"]
+COPY ["BLL/BLL.csproj", "BLL/"]
+COPY ["DAL/DAL.csproj", "DAL/"]
+RUN dotnet restore "Device_microservice/Device_microservice.csproj"
+COPY . .
+WORKDIR "/src/Device_microservice"
+RUN dotnet build "Device_microservice.csproj" -c Release -o /app/build
 
-# FROM build AS publish
-# RUN dotnet publish "User_microservice" -c Release -o /app/publish /p:UseAppHost=false
-
-# FROM base AS final
-# WORKDIR /app
-# COPY --from=publish /app/publish .
-
-# CMD ["dotnet", "run", "ASPNETCORE_ENVIRONMENT=Development"]
-CMD ["tail", "-f", "/dev/null"]
+FROM build AS publish
+RUN dotnet publish "Device_microservice.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "User_microservice.dll"]
+ENTRYPOINT ["dotnet", "Device_microservice.dll"]

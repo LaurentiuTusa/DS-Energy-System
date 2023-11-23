@@ -58,7 +58,11 @@ const Login = () => {
       role: 'user', // Set the role to 'user' by default
     };
 
-    axios.post(registerUrl, registerData)
+    axios.post(registerUrl, registerData, {
+      headers: {
+        AccessControlAllowOrigin: '*',
+      }
+    })
       .then((registerResult) => {
 
         const jwtToken = registerResult.data.token;

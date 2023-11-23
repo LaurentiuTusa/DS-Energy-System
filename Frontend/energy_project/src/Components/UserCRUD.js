@@ -85,6 +85,7 @@ const UserCRUD = () => {
       axios.delete(urlUser, {
           headers: {
             Authorization: `Bearer ${jwtToken}`,
+            AccessControlAllowOrigin: '*',
           }
         })
         .then((result) => {
@@ -138,7 +139,11 @@ const UserCRUD = () => {
       "role": role
     };
   
-    axios.post(userMicroserviceUrl, userData)
+    axios.post(userMicroserviceUrl, userData, {
+      headers: {
+        AccessControlAllowOrigin: '*',
+      }
+    })
       .then((userResult) => {
         getData();
         clear();

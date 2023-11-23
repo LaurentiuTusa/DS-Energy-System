@@ -16,10 +16,10 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:3000")
+                .AllowAnyOrigin()
                 .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials();
+                .AllowAnyMethod();
+                
         });
 });
 
@@ -59,7 +59,7 @@ builder.Services.AddScoped<JwtTokenService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment()) app.UseCors(x => x.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+if (app.Environment.IsDevelopment()) app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 
 app.UseSwagger();
