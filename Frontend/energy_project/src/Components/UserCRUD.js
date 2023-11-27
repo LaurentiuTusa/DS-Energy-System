@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NavigationButtons from './NavigationButtons';
 import LogoutButton from './LogoutButton';
 import { useNavigate } from 'react-router-dom';
+import ServerSelector from './ServerSelector';
 
 const UserCRUD = () => {
   
@@ -50,7 +51,7 @@ const UserCRUD = () => {
 
   const getData = () => {
 
-    axios.get('http://localhost:8082/api/User/GetAllUsers')
+    axios.get(`${ServerSelector.userServer}/api/User/GetAllUsers`)
     .then((result) => {
       setData(result.data);
     })
@@ -63,7 +64,7 @@ const UserCRUD = () => {
 
     handleShow();
 
-    axios.get(`http://localhost:8082/api/User/${id}`)
+    axios.get(`${ServerSelector.userServer}/api/User/${id}`)
     .then((result) => {
       setEditName(result.data.name);
       setEditEmail(result.data.email);
@@ -80,7 +81,7 @@ const UserCRUD = () => {
     if (window.confirm('Are you sure you want to delete this user?')) {
 
       const jwtToken = localStorage.getItem('jwtToken');
-      const urlUser = `http://localhost:8082/api/User/DeleteUserById?id=${id}`;
+      const urlUser = `${ServerSelector.userServer}/api/User/DeleteUserById?id=${id}`;
 
       axios.delete(urlUser, {
           headers: {
@@ -104,7 +105,7 @@ const UserCRUD = () => {
 
     const jwtToken = localStorage.getItem('jwtToken');
 
-    const url = 'http://localhost:8082/api/User/UpdateUser';
+    const url = `${ServerSelector.userServer}/api/User/UpdateUser`;
     const data = {
       "id": editId,
       "name": editName,
@@ -131,7 +132,7 @@ const UserCRUD = () => {
 
   const handleSave = () => {
 
-    const userMicroserviceUrl = 'http://localhost:8082/api/User/AddUser';
+    const userMicroserviceUrl = `${ServerSelector.userServer}/api/User/AddUser`;
     const userData = {
       "name": name,
       "email": email,

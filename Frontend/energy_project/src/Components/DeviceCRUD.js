@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NavigationButtons from './NavigationButtons';
 import LogoutButton from './LogoutButton';
 import { useNavigate } from 'react-router-dom';
+import ServerSelector from './ServerSelector';
 
 const DeviceCRUD = () => {
 
@@ -52,7 +53,7 @@ const DeviceCRUD = () => {
 
   const getData = () => {
 
-    axios.get('http://localhost:8083/Device/GetAllDevices')
+    axios.get(`${ServerSelector.deviceServer}/Device/GetAllDevices`)
     .then((result) => {
       setData(result.data);
     })
@@ -65,7 +66,7 @@ const DeviceCRUD = () => {
 
     handleShow();
 
-    axios.get(`http://localhost:8083/Device/GetDeviceById?id=${id}`)
+    axios.get(`${ServerSelector.deviceServer}/Device/GetDeviceById?id=${id}`)
     .then((result) => {
       setEditDescription(result.data.description);
       setEditAddress(result.data.address);
@@ -83,7 +84,7 @@ const DeviceCRUD = () => {
     if (window.confirm('Are you sure you want to delete this device?') == true) {
 
       const jwtToken = localStorage.getItem('jwtToken');
-      const url = `http://localhost:8083/Device/DeleteDeviceById?id=${id}`;
+      const url = `${ServerSelector.deviceServer}/Device/DeleteDeviceById?id=${id}`;
 
       axios.delete(url, {
         headers: {
@@ -106,7 +107,7 @@ const DeviceCRUD = () => {
 
     const jwtToken = localStorage.getItem('jwtToken');
 
-    const url = 'http://localhost:8083/Device/UpdateDevice';
+    const url = `${ServerSelector.deviceServer}/Device/UpdateDevice`;
     const data = {
       "id": editId,
       "description": editDescription,
@@ -133,7 +134,7 @@ const DeviceCRUD = () => {
 
   const handleSave =() => {
 
-    const url = 'http://localhost:8083/Device/AddDevice';
+    const url = `${ServerSelector.deviceServer}/Device/AddDevice`;
     const data = {
       "description": description,
       "address": address,

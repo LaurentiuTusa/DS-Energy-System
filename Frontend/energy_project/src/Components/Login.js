@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ServerSelector from './ServerSelector';
+
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState('');
@@ -19,7 +21,7 @@ const Login = () => {
       password: loginPassword,
     };
 
-    axios.post('http://localhost:8082/api/Login/Login', loginData)
+    axios.post(`${ServerSelector.userServer}/api/Login/Login`, loginData)
       .then((response) => {
         const jwtToken = response.data.token;
         const currentUserId = response.data.currentUserId;
@@ -49,7 +51,7 @@ const Login = () => {
 
   const handleRegister = () => {
 
-    const registerUrl = 'http://localhost:8082/api/Login/Register';
+    const registerUrl = `${ServerSelector.userServer}/api/Login/Register`;
 
     const registerData = {
       name: registerName,

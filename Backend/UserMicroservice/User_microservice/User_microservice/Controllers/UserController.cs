@@ -5,6 +5,7 @@ using DAL.Repository.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static User_microservice.Services.Constants;
 
 
 namespace User_microservice.Controllers
@@ -56,7 +57,7 @@ namespace User_microservice.Controllers
             using (HttpClient client = new HttpClient())
             {
                 // Make the HTTP POST request to AddUserId endpoint in Device_microservice
-                HttpResponseMessage response = client.PostAsync($"http://localhost:8083/Device/AddUserId?user_id={newUserId}", null).Result;
+                HttpResponseMessage response = client.PostAsync(server + $"/Device/AddUserId?user_id={newUserId}", null).Result;
             
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)
@@ -106,7 +107,7 @@ namespace User_microservice.Controllers
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 // Make the HTTP POST request to AddUserId endpoint in Device_microservice
-                HttpResponseMessage response = client.DeleteAsync($"http://localhost:8083/Device/DeleteUserId?id={id}").Result;
+                HttpResponseMessage response = client.DeleteAsync(server + $"/Device/DeleteUserId?id={id}").Result;
 
                 // Check if the request was successful
                 if (response.IsSuccessStatusCode)
