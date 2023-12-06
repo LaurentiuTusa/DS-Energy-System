@@ -22,9 +22,11 @@ namespace MCMicroservice
 /*                HostName = configuration["RabbitMQ:HostName"],
                 UserName = configuration["RabbitMQ:UserName"],
                 Password = configuration["RabbitMQ:Password"]*/
-                HostName = "localhost",
+                //HostName = "localhost",
+                HostName = "172.17.0.2",
                 UserName = "guest",
-                Password = "guest"
+                Password = "guest",
+                Port = 5672
             };
 
             _connection = factory.CreateConnection();

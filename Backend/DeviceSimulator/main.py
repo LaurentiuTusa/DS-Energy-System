@@ -35,7 +35,9 @@ def main():
     print("device_id: " + device_id)
     csv_file_path = "sensor.csv"
 
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    #connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    #connection = pika.BlockingConnection(pika.ConnectionParameters('rabbit-server'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('172.17.0.2'))
     channel = connection.channel()
     channel.queue_declare(queue='energy_data')
 
