@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T9yiuvXm2c7GzbZte2zIMJ93rPQXqAg/11Sgx9L8rcMiVHXImbexQOQW5D/gWnHAc7Vqc5j+m+/q09vOHP0MNw==",
+  "dgSpecHash": "x5/dzVrpg/HbLt7Ty9yYAg2ZhEE0GhLPcmaUYZP3Xwzdtqx6cwda2Pb6aMXeH3InP9POwvklxwafAM7R8hg50Q==",
   "success": true,
-  "projectFilePath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\BLL\\BLL.csproj",
+  "projectFilePath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lautu\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\lautu\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj": {}
+    "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj": {}
   },
   "projects": {
-    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj": {
+    "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj",
+        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj",
+        "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
-        "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\obj\\",
+        "outputPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj": {
-                "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj"
+              "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj"
               }
             }
           }
@@ -69,14 +69,14 @@
         }
       }
     },
-    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj": {
+    "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj",
+        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj",
+        "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
-        "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\obj\\",
+        "outputPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -144,14 +144,14 @@
         }
       }
     },
-    "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj": {
+    "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj",
+        "projectUniqueName": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj",
         "projectName": "Device_microservice",
-        "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj",
+        "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\Device_microservice.csproj",
         "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
-        "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\obj\\",
+        "outputPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\Device_microservice\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -168,8 +168,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj": {
-                "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj"
+              "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\DeviceMicroservice\\Device_microservice\\BLL\\BLL.csproj"
               }
             }
           }

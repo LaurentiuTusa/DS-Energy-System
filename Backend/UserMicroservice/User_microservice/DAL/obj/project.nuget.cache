@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LTqOme9m0o5DaP2ZW9WN7zYq443bSla5fjFvEKUuQRM5Ks0dIklNscER1TC50PImAOZkMp7n0l0YsCAR4Kp+nQ==",
+  "dgSpecHash": "EGrO4s0SFe6n3jDSF96lHYf1MV/IPUJbTps7EO38DAzjr3cA4uQEzNg01Z+k3lOpBN/pg/ZJ8oz+xkuC86G4nw==",
   "success": true,
-  "projectFilePath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\DAL.csproj",
+  "projectFilePath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lautu\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\lautu\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

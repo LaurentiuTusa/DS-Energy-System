@@ -3192,11 +3192,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\User_microservice\\User_microservice.csproj",
+      "projectUniqueName": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\User_microservice\\User_microservice.csproj",
       "projectName": "User_microservice",
-      "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\User_microservice\\User_microservice.csproj",
+      "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\User_microservice\\User_microservice.csproj",
       "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
-      "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\User_microservice\\obj\\",
+      "outputPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\User_microservice\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3213,8 +3213,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\BLL\\BLL.csproj": {
-              "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\BLL\\BLL.csproj"
+            "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\BLL\\BLL.csproj": {
+              "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\BLL\\BLL.csproj"
             }
           }
         }

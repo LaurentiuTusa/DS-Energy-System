@@ -3119,11 +3119,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\DAL.csproj",
+      "projectUniqueName": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\DAL.csproj",
+      "projectPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\lautu\\.nuget\\packages\\",
-      "outputPath": "D:\\Lau\\FACULTATE\\An4 Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\obj\\",
+      "outputPath": "D:\\Lau\\FACULTATE\\An4_Sem1\\DS\\Energy System Project\\Backend\\UserMicroservice\\User_microservice\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lautu\\AppData\\Roaming\\NuGet\\NuGet.Config",
