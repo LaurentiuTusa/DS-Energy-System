@@ -7,6 +7,7 @@ import Login from './Components/Login';
 import UserDashboard from './Components/UserDashboard';
 import PrivateRoute from './Components/PrivateRoute';
 import Unauthorized from './Components/Unauthorized';
+import ChatService from './Components/ChatService';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/adminUserCRUD/:userId" element={<UserCRUD />} />
           <Route path="/adminDeviceCRUD/:userId" element={<DeviceCRUD />} />
           <Route path="/userDashboard/:userId" element={<UserDashboard />} />
+          <Route path="/chatService" element={<ChatService />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
           <Route index element={<NavigateToLogin />} /> {/* Redirect to /login if no route matches */}
       </Routes>

@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import LogoutButton from './LogoutButton';
 import { useNavigate } from 'react-router-dom';
 import ServerSelector from './ServerSelector';
+import NavigationButtons from './NavigationButtons';
 
 const UserDashboard = () => {
 
@@ -98,6 +99,7 @@ const UserDashboard = () => {
   return (
     <Fragment>
       <div>
+        <NavigationButtons />
         <LogoutButton />
       </div>
       <ToastContainer />
