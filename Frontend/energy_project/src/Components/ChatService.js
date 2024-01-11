@@ -5,6 +5,7 @@ import Chat from './Chat';
 import ExitChatButton from './ExitChatButton';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ServerSelector from './ServerSelector';
 
 const ChatService = () => {
   const [connection, setConnection] = useState();
@@ -14,7 +15,8 @@ const ChatService = () => {
   const joinRoom = async (user, room) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl("https://localhost:7215/chat")
+        //.withUrl("https://localhost:7215/chat")
+        .withUrl(ServerSelector.chatServer)
         .configureLogging(LogLevel.Information)
         .build();
 
